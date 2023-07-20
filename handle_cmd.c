@@ -43,7 +43,12 @@ void handle_cmd(char **env, char *line_ptr, char *delim)
 					break;
 				default:
 					wait(&state);
-			}
+          if (state != 0)
+          {
+            errno = 2;
+            exit(errno);
+          }
+      }
 		}
 		else
 			perror("./hsh");
