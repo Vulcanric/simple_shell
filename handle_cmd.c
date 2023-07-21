@@ -51,7 +51,7 @@ void handle_cmd(char **env, char *line_ptr, char *delim)
       }
 		}
 		else
-			perror("./hsh");
+			_perror(arr[0]);
 	}
 	free(st);
 }

@@ -14,4 +14,5 @@
 void display_prompt(void);
 void handle_cmd(char **env, char *line_ptr, char *delim);
 int _strcmp(char *s1, char *s2);
+void _perror(char *s);
 #endif
