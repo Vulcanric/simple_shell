@@ -15,10 +15,10 @@ void handle_cmd(char **env, char *line_ptr, char *delim)
 	int i = 0;
 	char *cmd;
 	struct stat *st = malloc(sizeof(struct stat));
-	char *arr[] = {"", NULL};
+	char *arr[100] = {"", NULL};
 
 	cmd = strtok(line_ptr, delim);
-	arr[0] = cmd;
+	arr[0] = path(cmd);
 	while (arr[i] != NULL)
 	{
 		i++;
@@ -46,7 +46,7 @@ void handle_cmd(char **env, char *line_ptr, char *delim)
 			}
 		}
 		else
-			perror("./hsh");
+			_perror(arr[0]);
 	}
 	free(st);
 }
