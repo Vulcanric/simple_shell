@@ -8,7 +8,7 @@
  * commands from their arguments
  * Return: Nothing
  */
-void handle_cmd(char **env, char *line_ptr, char *delim)
+void handle_cmd(char **env, char *line_ptr, char *delim, char *prog)
 {
 	pid_t pid;
 	int state;
@@ -18,16 +18,15 @@ void handle_cmd(char **env, char *line_ptr, char *delim)
 	char *arr[100] = {"", NULL};
 
 	cmd = strtok(line_ptr, delim);
-	if (cmd != NULL)
+	arr[0] = path(cmd);
+
+	while (arr[i] != NULL)
 	{
-		arr[0] = path(cmd);
-
-		while (arr[i] != NULL)
-		{
-			i++;
-			arr[i] = strtok(NULL, delim);
-		}
-
+		i++;
+		arr[i] = strtok(NULL, delim);
+	}
+	if (arr[0] != NULL)
+	{
 		if (stat(arr[0], st) == 0)
 		{
 			pid = fork();
@@ -45,20 +44,19 @@ void handle_cmd(char **env, char *line_ptr, char *delim)
 					break;
 				default:
 					wait(&state);
-					if (state != 0)
-					{
-						errno = 2;
-						exit(errno);
-					}
 			}
 		}
 		else
 		{
-			_perror(arr[0]);
-			if (isatty(STDIN_FILENO) == 0)
+			pid = fork();
+			if (pid == 0)
+			{
+				_perror(arr[0], prog);
 				exit(127);
+			}
+			else if (pid != -1)
+				wait(&state);
 		}
 	}
-
 	free(st);
 }

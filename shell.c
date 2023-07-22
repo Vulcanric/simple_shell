@@ -11,7 +11,7 @@
 int main(int argc, char *av[], char **env)
 {
 	size_t n = 0;
-	char *line = NULL;
+	char *line = NULL, *cmd;
 
 	(void)argc;
 	(void)av;
