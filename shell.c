@@ -25,7 +25,7 @@ int main(int argc, char *av[], char **env)
 		if (_strcmp(line, "exit\n") == 0)
 		{
 			free(line);
-			exit(EXIT_SUCCESS); /* Quit shell */
+			exit(2); /* Quit shell */
 		}
 
 		handle_cmd(env, line, " \n\t\v\b\r\f");
