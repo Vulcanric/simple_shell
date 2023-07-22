@@ -11,7 +11,7 @@
 int main(int argc, char *av[], char **env)
 {
 	size_t n = 0;
-	char *line = NULL;
+	char *line = NULL, *cmd;
 
 	(void)argc;
 	(void)av;
@@ -22,13 +22,13 @@ int main(int argc, char *av[], char **env)
 		if (getline(&line, &n, stdin) == -1)
 			exit(EXIT_SUCCESS);
 
-		if (_strcmp(line, "exit\n") == 0)
+		if (strcmp(line, "exit\n") == 0)
 		{
 			free(line);
-			exit(EXIT_SUCCESS); /* Quit shell */
+			exit(2); /* Quit shell */
 		}
 
-		handle_cmd(env, line, " \n\t\v\b\r\f");
+		handle_cmd(env, line, " \n\t\v\b\r\f", av[0]);
 	}
 	return (0);
 }
