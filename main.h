@@ -8,6 +8,7 @@
 #include <sys/wait.h>
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
 
 /* Prototypes*/
 void display_prompt(void);
