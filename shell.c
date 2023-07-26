@@ -24,12 +24,14 @@ int main(int argc, char *av[], char **env)
 
 		if (_strcmp(line, "exit\n") == 0)
 		{
-			free(line);
+			/*free(line);*/
 			exit(2); /* Quit shell */
 		}
 
-		handle_cmd(env, &line, " \n\t\v\b\r\f");
+
+		handle_cmd(env, line, " \n\t\v\b\r\f");
 		free(line);
 	}
+	free(line);
 	return (0);
 }

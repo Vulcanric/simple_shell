@@ -8,10 +8,11 @@
 
 void _perror(char *cmd)
 {
-	static int num = 0;
+	static int num;
 	char *s = "./hsh: ";
 	int len = 0;
 
+	num = 0;
 	while (cmd[len])
 		len++;
 
