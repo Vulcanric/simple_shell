@@ -27,7 +27,7 @@ void handle_cmd(char **env, char *line_ptr, char *delim)
 			arr[i] = strtok(NULL, delim);
 		}
 
-		checkpath(arr, env, &st);
+		checkpath(arr, env, &st, line_ptr);
 
 	}
 

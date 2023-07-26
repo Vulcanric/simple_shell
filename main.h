@@ -18,6 +18,6 @@ int _strcmp(char *s1, char *s2);
 char *path(char *cmd);
 char *_strcat(char *dest, char *src);
 void _perror(char *cmd);
-void checkpath(char **arr, char **env, struct stat **st);
+void checkpath(char **arr, char **env, struct stat **st, char *line_ptr);
 void print_num(int n);
 #endif

@@ -7,7 +7,7 @@
  * Return: void
  */
 
-void checkpath(char **arr, char **env, struct stat **st)
+void checkpath(char **arr, char **env, struct stat **st, char *line_ptr)
 {
 	pid_t pid;
 	int state;
@@ -33,6 +33,8 @@ void checkpath(char **arr, char **env, struct stat **st)
 				if (state != 0)
 				{
 					errno = 2;
+					free(*st);
+					free(line_ptr);
 					exit(errno);
 				}
 		}
