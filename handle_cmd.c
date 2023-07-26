@@ -50,6 +50,7 @@ void handle_cmd(char **env, char *line_ptr, char *delim)
 						errno = 2;
 						exit(errno);
 					}
+					free(arr[0]);
 			}
 		}
 		else

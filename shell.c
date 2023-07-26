@@ -29,6 +29,7 @@ int main(int argc, char *av[], char **env)
 		}
 
 		handle_cmd(env, line, " \n\t\v\b\r\f");
+		free(line);
 	}
 	return (0);
 }
