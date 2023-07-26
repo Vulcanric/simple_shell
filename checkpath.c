@@ -4,6 +4,7 @@
  * @arr: array of parameter to be executed
  * @env: environment variables
  * @st: pointer to stat for storing path information
+ * @line_ptr: memory location of strings read from line
  * Return: void
  */
 

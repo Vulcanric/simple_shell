@@ -20,7 +20,10 @@ int main(int argc, char *av[], char **env)
 		display_prompt();
 
 		if (getline(&line, &n, stdin) == -1)
+		{
+			free(line);
 			exit(EXIT_SUCCESS);
+		}
 
 		if (_strcmp(line, "exit\n") == 0)
 		{
@@ -30,7 +33,6 @@ int main(int argc, char *av[], char **env)
 
 
 		handle_cmd(env, line, " \n\t\v\b\r\f");
-		free(line);
 	}
 	return (0);
 }
