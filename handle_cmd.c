@@ -8,20 +8,18 @@
  * commands from their arguments
  * Return: Nothing
  */
-void handle_cmd(char **env, char *line_ptr, char *delim)
+void handle_cmd(char **env, char **line_ptr, char *delim)
 {
-	pid_t pid;
-	int state;
-	int i = 0;
-	char *cmd;
+	pid_t pid, pid2;
+	int state, state2, i = 0;
+	char *cmd, *arr[100] = {"", NULL}, line_cp[2048];
 	struct stat *st = malloc(sizeof(struct stat));
-	char *arr[100] = {"", NULL};
 
-	cmd = strtok(line_ptr, delim);
+	strcpy(line_cp, *line_ptr);
+	cmd = strtok(line_cp, delim);
 	if (cmd != NULL)
 	{
-		arr[0] = path(cmd);
-
+		arr[0] = cmd;
 		while (arr[i] != NULL)
 		{
 			i++;
@@ -40,26 +38,30 @@ void handle_cmd(char **env, char *line_ptr, char *delim)
 					if (execve(arr[0], arr, env) == -1)
 					{
 						free(st);
-						exit(EXIT_FAILURE);
+						exit(EXIT_SUCCESS);
 					}
 					break;
 				default:
 					wait(&state);
-					if (state != 0)
-					{
-						errno = 2;
-						exit(errno);
-					}
-					free(arr[0]);
+					free(st);
+					pid2 = fork();
+					if (pid2 == 0)
+						exit(0);
+					else
+						wait(&state2);
 			}
 		}
 		else
 		{
 			_perror(arr[0]);
+			free(st);
 			if (isatty(STDIN_FILENO) == 0)
 				exit(127);
 		}
 	}
-
-	free(st);
+	else
+	{
+		free(*line_ptr);
+		free(st);
+	}
 }
