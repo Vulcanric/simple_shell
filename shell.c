@@ -28,9 +28,10 @@ int main(int argc, char *av[], char **env)
 		if (_strcmp(line, "exit\n") == 0)
 		{
 			free(line);
-			exit(0); /* Quit shell */
+			exit(0);  Quit shell 
 		}
 
+		_exit_bltin(&line);
 
 		handle_cmd(env, line, " \n\t\v\b\r\f");
 	}
