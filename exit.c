@@ -12,7 +12,7 @@ void _exit_bltin(char **input)
 	char line[2048];
 	char *tmp, *cmd, *to_free;
 
-	strcpy(line, *input);
+	_strcpy(line, *input);
 	cmd = strtok(line, " \n\t\v");
 	tmp = cmd;
 
