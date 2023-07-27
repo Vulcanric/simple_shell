@@ -25,9 +25,10 @@ int main(int argc, char *av[], char **env)
 			exit(EXIT_SUCCESS);
 		}
 
-		_exit_bltin(&line);
-
-		handle_cmd(env, line, " \n\t\v\b\r\f");
+		if (_strncmp(line, "exit", 4) == 0)
+			_exit_bltin(&line);
+		else
+			handle_cmd(env, line, " \n\t\v\b\r\f");
 	}
 	return (0);
 }
