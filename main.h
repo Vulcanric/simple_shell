@@ -15,6 +15,7 @@
 void display_prompt(void);
 void handle_cmd(char **env, char *line_ptr, char *delim);
 int _strcmp(char *s1, char *s2);
+char *_strcpy(char *dest, char *src);
 char *path(char *cmd);
 int _atoi(char *str);
 void _exit_bltin(char **input);
