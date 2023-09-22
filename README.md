@@ -1,7 +1,7 @@
 ## 0x16. C - SIMPLE SHELL
 
 ### DESCRIPTION
-***This is a shell implementation project in C, done in fulfilment of sprint 1 :rocket:***
+***This is a shell implementation project in C. The objective is to have a very good understanding of how the shell interpreter applications and the operating system interact:***
 - The program has same output as the `/bin/sh` shell
 - Except difference in program name which is `hsh`
 
